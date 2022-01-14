@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:photo_view/photo_view.dart';
+
 import '../blocs/bloc.dart';
 import '../blocs/collage_bloc.dart';
 import '../blocs/collage_state.dart';
@@ -59,36 +61,31 @@ class GridCollageWidget extends StatelessWidget {
   }
 
   buildRow(int index) {
-    return Stack(
-      fit: StackFit.expand,
-      children: <Widget>[
-        Positioned.fill(
-          bottom: 0.0,
-          child: Container(
-            child: _imageList[index].imageUrl != null
-                ? Image.file(
+    return Container(
+      child: _imageList[index].imageUrl != null
+          ? InkWell(
+              highlightColor: Colors.transparent,
+              onTap: () => showDialogImage(index),
+              child: ClipRect(
+                child: PhotoView.customChild(
+                  initialScale: PhotoViewComputedScale.covered,
+                  child: Image.file(
                     _imageList[index].imageUrl ?? File(''),
-                    fit: BoxFit.cover,
-                  )
-                : const Padding(
-                    padding: EdgeInsets.all(3),
-                    child: Material(
-                      child: Icon(Icons.add),
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: Color(0xFFD3D3D3),
-                    ),
                   ),
-          ),
-        ),
-        Positioned.fill(
-            child: Material(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: Colors.transparent,
+                ),
+              ),
+            )
+          : Padding(
+              padding: EdgeInsets.all(3),
+              child: Material(
                 child: InkWell(
-                  highlightColor: Colors.transparent,
-                  onTap: () => showDialogImage(index),
-                ))),
-      ],
+                    highlightColor: Colors.transparent,
+                    onTap: () => showDialogImage(index),
+                    child: Icon(Icons.add)),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: Color(0xFFD3D3D3),
+              ),
+            ),
     );
   }
 
