@@ -62,10 +62,13 @@ class GridCollageWidget extends StatelessWidget {
 
   buildRow(int index) {
     return Container(
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.white, width: 3),
+      ),
       child: _imageList[index].imageUrl != null
           ? InkWell(
-              highlightColor: Colors.transparent,
+              highlightColor: Colors.yellow,
               onTap: () => showDialogImage(index),
               child: ClipRect(
                 child: PhotoView.customChild(

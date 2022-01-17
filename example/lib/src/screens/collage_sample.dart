@@ -7,7 +7,6 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:image_collage_widget/blocs/collage_bloc.dart';
 import 'package:image_collage_widget/image_collage_widget.dart';
 import 'package:image_collage_widget/utils/CollageType.dart';
 import 'package:path_provider/path_provider.dart';
@@ -31,6 +30,7 @@ class _CollageSample extends State<CollageSample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black45,
       appBar: AppBar(
           leading: GestureDetector(
             onTap: () => Navigator.pop(context),
