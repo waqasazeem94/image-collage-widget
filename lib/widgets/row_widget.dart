@@ -62,7 +62,7 @@ class GridCollageWidget extends StatelessWidget {
 
   buildRow(int index) {
     return Container(
-      color: Colors.white,
+      color: Colors.red,
       child: _imageList[index].imageUrl != null
           ? InkWell(
               highlightColor: Colors.transparent,
